@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from "react";
+import profile from "../assets/atsphoto.png";
 
 const Hero = () => {
-
   const texts = [
     "Open for Internship & Freelancing",
     "Building Modern Web Experiences",
@@ -37,9 +36,19 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [text, deleting, index]);
 
+  const scrollToProjects = () => {
+    const section = document.getElementById("projects");
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <section style={styles.hero}>
-
       {/* GLOW BACKGROUND */}
       <div style={styles.glow1}></div>
       <div style={styles.glow2}></div>
@@ -47,37 +56,50 @@ const Hero = () => {
       {/* BIG SP WATERMARK */}
       <div style={styles.bgText}>SP</div>
 
-      {/* CENTER CONTENT */}
-      <div style={styles.center}>
+      <div style={styles.contentWrapper}>
+        {/* LEFT CONTENT */}
+        <div style={styles.center}>
+          <div style={styles.statusRow}>
+            <span style={styles.dot}></span>
+            <p style={styles.status}>{text}</p>
+          </div>
 
-        {/* LIVE STATUS */}
-        <div style={styles.statusRow}>
-          <span style={styles.dot}></span>
-          <p style={styles.status}>{text}</p>
+          <h1 style={styles.name}>
+            <span style={styles.cursive}>Sanjana Pal</span>
+          </h1>
+
+          <p style={styles.college}>
+            Student at <b>Institute of Engineering and Technology, Lucknow</b>{" "}
+            (2023–2027)
+          </p>
+
+          <p style={styles.about}>
+             Turning imagination into interactive digital experiences ✨. Blending
+  technology, design, 
+  and creativity to build modern web applications,
+  AI-driven solutions, and memorable user journeys.
+  </p>
+
+          <button
+            style={styles.button}
+            onClick={scrollToProjects}
+          >
+            View Projects
+          </button>
         </div>
 
-        {/* NAME */}
-        <h1 style={styles.name}>
-          <span style={styles.cursive}>Sanjana Pal</span>
-        </h1>
+        {/* RIGHT PROFILE IMAGE */}
+        <div style={styles.imageContainer}>
+          <div style={styles.imageGlow}></div>
 
-        {/* COLLEGE */}
-        <p style={styles.college}>
-          Student at <b>Institute of Engineering and Technology, Lucknow</b> (2023–2027)
-        </p>
-
-        {/* ABOUT */}
-        <p style={styles.about}>
-          Passionate Frontend Developer crafting clean, modern and interactive
-          web experiences using React, UI design principles and creativity.
-        </p>
-
-        {/* BUTTON */}
-        <button style={styles.button}>View Projects</button>
-
+          <img
+            src={profile}
+            alt="Sanjana Pal"
+            style={styles.profileImage}
+          />
+        </div>
       </div>
 
-      {/* ANIMATION */}
       <style>
         {`
           @keyframes glow {
@@ -91,15 +113,19 @@ const Hero = () => {
             50% { transform: translateY(-6px) scale(1.02); }
             100% { transform: translateY(0px) scale(1); }
           }
+
+          @keyframes floatImage {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+          }
         `}
       </style>
-
     </section>
   );
 };
 
 const styles = {
-
   hero: {
     height: "100vh",
     width: "100%",
@@ -107,11 +133,21 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    textAlign: "center",
     padding: "0 6%",
     position: "relative",
     overflow: "hidden",
     fontFamily: "Poppins, sans-serif",
+  },
+
+  contentWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    maxWidth: "1400px",
+    gap: "60px",
+    zIndex: 2,
+    flexWrap: "wrap",
   },
 
   glow1: {
@@ -150,13 +186,13 @@ const styles = {
   },
 
   center: {
-    zIndex: 2,
-    maxWidth: "850px",
+    flex: 1,
+    minWidth: "400px",
+    textAlign: "left",
   },
 
   statusRow: {
     display: "flex",
-    justifyContent: "center",
     alignItems: "center",
     gap: "10px",
   },
@@ -180,7 +216,7 @@ const styles = {
   },
 
   cursive: {
-    fontFamily: "'Dancing Script', 'Brush Script MT', cursive",
+    fontFamily: "'Lucida Calligraphy', 'Lucida Handwriting', cursive",
     fontSize: "90px",
     fontWeight: "700",
     letterSpacing: "2px",
@@ -203,6 +239,7 @@ const styles = {
     fontSize: "15px",
     color: "#888",
     lineHeight: "1.7",
+    maxWidth: "700px",
   },
 
   button: {
@@ -215,7 +252,35 @@ const styles = {
     fontWeight: "600",
     fontSize: "16px",
     cursor: "pointer",
-    transition: "0.3s ease",
+  },
+
+  imageContainer: {
+    position: "relative",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  imageGlow: {
+    position: "absolute",
+    width: "380px",
+    height: "380px",
+    background: "linear-gradient(#00f5ff,#7c3aed)",
+    borderRadius: "50%",
+    filter: "blur(70px)",
+    opacity: 0.45,
+  },
+
+  profileImage: {
+    width: "350px",
+    height: "350px",
+    objectFit: "cover",
+    borderRadius: "50%",
+    border: "4px solid rgba(255,255,255,0.15)",
+    boxShadow: "0 0 40px rgba(124,58,237,0.4)",
+    position: "relative",
+    zIndex: 2,
+    animation: "floatImage 5s ease-in-out infinite",
   },
 };
 
