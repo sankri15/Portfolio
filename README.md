@@ -4,7 +4,6 @@ This is my personal developer portfolio website built to showcase my skills, pro
 
 Link : https://portfolio-my-six-delta.vercel.app
 
-
 ## 🚀 Features
 
 - Responsive design for all devices (mobile, tablet, desktop)
