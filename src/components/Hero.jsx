@@ -73,12 +73,62 @@ const Hero = () => {
             (2023–2027)
           </p>
 
-          <p style={styles.about}>
-             Turning imagination into interactive digital experiences ✨. Blending
-  technology, design, 
-  and creativity to build modern web applications,
-  AI-driven solutions, and memorable user journeys.
-  </p>
+          <div style={styles.about}>
+  <div style={styles.mask}>
+    <span
+      style={{
+        ...styles.line,
+        animationDelay: "0.1s",
+      }}
+    >
+      Turning imagination into
+    </span>
+  </div>
+
+  <div style={styles.mask}>
+    <span
+      style={{
+        ...styles.line,
+        animationDelay: "0.25s",
+      }}
+    >
+      interactive digital experiences ✨.
+    </span>
+  </div>
+
+  <div style={styles.mask}>
+    <span
+      style={{
+        ...styles.line,
+        animationDelay: "0.4s",
+      }}
+    >
+      Blending technology, design, and creativity
+    </span>
+  </div>
+
+  <div style={styles.mask}>
+    <span
+      style={{
+        ...styles.line,
+        animationDelay: "0.55s",
+      }}
+    >
+      to build modern web applications,
+    </span>
+  </div>
+
+  <div style={styles.mask}>
+    <span
+      style={{
+        ...styles.line,
+        animationDelay: "0.7s",
+      }}
+    >
+      AI-driven solutions, and memorable user journeys.
+    </span>
+  </div>
+</div>
 
           <button
             style={styles.button}
@@ -119,6 +169,18 @@ const Hero = () => {
             50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
           }
+
+          @keyframes revealLine {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
         `}
       </style>
     </section>
@@ -216,10 +278,10 @@ const styles = {
   },
 
   cursive: {
-    fontFamily: "'Lucida Calligraphy', 'Lucida Handwriting', cursive",
-    fontSize: "90px",
-    fontWeight: "700",
-    letterSpacing: "2px",
+    fontFamily: "'Great Vibes', cursive",
+    fontSize: "100px",
+    fontWeight: "400",
+    letterSpacing: "1px",
     background: "linear-gradient(90deg,#00f5ff,#7c3aed,#ff4ecd)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
@@ -235,12 +297,26 @@ const styles = {
   },
 
   about: {
-    marginTop: "18px",
-    fontSize: "15px",
-    color: "#888",
-    lineHeight: "1.7",
-    maxWidth: "700px",
-  },
+  marginTop: "22px",
+  maxWidth: "700px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "6px",
+},
+
+mask: {
+  overflow: "hidden",
+},
+
+line: {
+  display: "inline-block",
+  color: "#9ca3af",
+  fontSize: "16px",
+  lineHeight: "1.8",
+  transform: "translateY(120%)",
+  opacity: 0,
+  animation: "revealLine .8s ease forwards",
+},
 
   button: {
     marginTop: "28px",
@@ -284,4 +360,4 @@ const styles = {
   },
 };
 
-export default Hero;
+export default Hero;        
