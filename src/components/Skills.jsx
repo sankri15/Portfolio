@@ -1,112 +1,89 @@
-import { useEffect, useRef, useState } from 'react';
-import { SKILL_CATEGORIES } from '../data';
-
-const CATEGORY_COLORS = {
-  violet:  { bg: 'from-violet-500/10 to-violet-600/5', border: 'border-violet-500/20', dot: 'bg-violet-400', bar: 'from-violet-500 to-violet-400', label: 'text-violet-400' },
-  blue:    { bg: 'from-blue-500/10 to-blue-600/5',     border: 'border-blue-500/20',   dot: 'bg-blue-400',   bar: 'from-blue-500 to-blue-400',   label: 'text-blue-400' },
-  emerald: { bg: 'from-emerald-500/10 to-emerald-600/5',border: 'border-emerald-500/20',dot: 'bg-emerald-400',bar: 'from-emerald-500 to-emerald-400',label: 'text-emerald-400' },
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { SKILL_CATEGORIES, PERSONAL } from '../data';
+// Add neon border/shadow colors to each category
+// Add neon border/shadow colors to each category
+const CATEGORY_STYLES = {
+  violet:  { border: 'border-pink-500/60', shadow: 'shadow-[0_0_15px_rgba(236,72,153,0.3)]', text: 'text-pink-300', wavy: 'linear-gradient(to top, #c084fc, #ec4899)' },
+  pink:    { border: 'border-cyan-500/60', shadow: 'shadow-[0_0_15px_rgba(34,211,238,0.3)]', text: 'text-cyan-300', wavy: 'linear-gradient(to top, #ec4899, #22d3ee)' },
+  emerald: { border: 'border-emerald-500/60', shadow: 'shadow-[0_0_15px_rgba(16,185,129,0.3)]', text: 'text-emerald-300', wavy: 'linear-gradient(to top, #10b981, #34d399)' },
 };
-
-function SkillBar({ name, level, color, animate }) {
-  return (
-    <div className="group">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm text-slate-300 font-medium group-hover:text-slate-100 transition-colors">{name}</span>
-        <span className={`text-xs mono font-semibold ${CATEGORY_COLORS[color].label}`}>{level}%</span>
-      </div>
-      <div className="skill-bar-track">
-        <div
-          className={`skill-bar-fill bg-gradient-to-r ${CATEGORY_COLORS[color].bar}`}
-          style={{ width: animate ? `${level}%` : '0%' }}
-        />
-      </div>
-    </div>
-  );
-}
 
 export default function Skills() {
   const sectionRef = useRef(null);
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setAnimate(true); obs.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) obs.observe(sectionRef.current);
-    return () => obs.disconnect();
-  }, []);
+  const isInView = useInView(sectionRef, { once: true, margin: "0px" });
 
   return (
-    <section id="skills" className="section" ref={sectionRef}>
+    <section id="skills" className="section relative z-10 py-20 overflow-hidden" ref={sectionRef}>
       {/* Background accent */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-0 top-1/2 w-96 h-96 rounded-full bg-violet-600/6 blur-3xl -translate-y-1/2" />
+        <div className="absolute left-0 top-1/2 w-96 h-96 rounded-full bg-pink-600/10 blur-3xl -translate-y-1/2" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
+      <div className="relative w-full mx-auto">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-semibold text-violet-300 mb-4 border border-violet-500/20">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16 px-4"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-semibold text-pink-300 mb-4 border border-pink-500/20 shadow-[0_0_15px_rgba(244,114,182,0.2)]">
             &#129520; Skills
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold">
-            <span className="section-heading gradient-text">What I Work With</span>
+            <span className="section-heading gradient-text" style={{ background: "linear-gradient(135deg, #f472b6, #c084fc, #fb7185)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              My Tech Arsenal
+            </span>
           </h2>
-          <p className="text-slate-500 mt-4 max-w-xl mx-auto text-base">
-            A curated set of technologies I use to build fast, scalable, and user-friendly applications.
-          </p>
-        </div>
+        </motion.div>
+        
+        {/* Marquee Rows */}
+        <div className="flex flex-col gap-14 w-full mt-10">
+          {SKILL_CATEGORIES.map((cat, index) => {
+            const c = CATEGORY_STYLES[cat.color] || CATEGORY_STYLES.violet;
+            // Alternate directions: left, right, left
+            const dirClass = index % 2 === 0 ? "animate-marquee" : "animate-marquee-reverse";
+            
+            // Repeat the skills array enough times to fill the screen for the marquee
+            const repeatedSkills = [...cat.skills, ...cat.skills, ...cat.skills, ...cat.skills, ...cat.skills, ...cat.skills, ...cat.skills];
 
-        {/* Skill category cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {SKILL_CATEGORIES.map((cat) => {
-            const c = CATEGORY_COLORS[cat.color];
             return (
-              <div
-                key={cat.title}
-                className={`glass rounded-2xl p-6 bg-gradient-to-br ${c.bg} border ${c.border} card-lift glow-border`}
-              >
-                {/* Card header */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-xl glass flex items-center justify-center text-xl border border-white/10">
-                    {cat.icon}
-                  </div>
-                  <div>
-                    <h3 className={`font-bold text-slate-200 text-base`}>{cat.title}</h3>
-                    <span className={`text-xs ${c.label}`}>{cat.skills.length} skills</span>
+              <div key={cat.title} className="w-full flex flex-col items-center">
+                
+                {/* Category Title properly aligned above */}
+                <div className="glass px-6 py-2 mb-6 rounded-full border border-white/10 flex items-center gap-3 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)] z-10">
+                  <span className="text-xl">{cat.icon}</span>
+                  <span className="font-bold text-white text-sm tracking-widest uppercase">{cat.title}</span>
+                </div>
+
+                {/* The Scrolling Marquee Container */}
+                <div className="relative flex overflow-hidden w-full py-4 bg-gradient-to-r from-transparent via-[#120815]/30 to-transparent">
+                  
+                  {/* Left & Right fade out gradients */}
+                  <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-20 bg-gradient-to-r from-[#0f0712] to-transparent pointer-events-none"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-20 bg-gradient-to-l from-[#0f0712] to-transparent pointer-events-none"></div>
+
+                  <div className={`${dirClass} flex gap-8 px-4`} style={{ animationDuration: '45s' }}>
+                    {repeatedSkills.map((skill, i) => (
+                      <div 
+                        key={`${skill.name}-${i}`} 
+                        className={`inline-flex items-center justify-center px-10 py-4 rounded-full border ${c.border} ${c.shadow} bg-black/40 glass-pill-btn wavy-btn hover:scale-[1.05] transition-transform cursor-default whitespace-nowrap shrink-0`}
+                        style={{ '--wavy-color': c.wavy }}
+                      >
+                        <span className={`relative z-10 font-bold tracking-widest uppercase ${c.text} drop-shadow-[0_0_10px_currentColor] text-sm`}>
+                          {skill.name}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Skill bars */}
-                <div className="space-y-4">
-                  {cat.skills.map(skill => (
-                    <SkillBar
-                      key={skill.name}
-                      name={skill.name}
-                      level={skill.level}
-                      color={cat.color}
-                      animate={animate}
-                    />
-                  ))}
-                </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom tech pills */}
-        <div className="mt-14 text-center">
-          <p className="text-slate-600 text-sm mb-5">Also comfortable with</p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {['TypeScript','MongoDB','Power BI','LeetCode','Linux','Figma','Postman','Firebase'].map(tech => (
-              <span key={tech} className="px-3 py-1.5 text-xs font-medium text-slate-400 glass rounded-full border border-white/[0.06] hover:text-slate-200 hover:border-violet-500/30 transition-all">
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { PERSONAL } from "../data";
+import CircleAnimation from "./CircleAnimation";
 
 export default function About() {
   const [hoverCert, setHoverCert] = useState(null);
@@ -7,327 +9,244 @@ export default function About() {
   const [hoverExp, setHoverExp] = useState(null);
 
   const aboutText =
-  "I am Sanjana Pal, a passionate Computer Science student specializing in Artificial Intelligence and Machine Learning at IET Lucknow. I love crafting beautiful user experiences, building modern web applications with React, and transforming creative ideas into impactful digital solutions. My journey combines technology, design, creativity, and continuous learning.";
+    "I am Sanjana Pal, a passionate Computer Science student specializing in Artificial Intelligence at IET Lucknow. With strong proficiency in Full-Stack Web Development, Data Structures, and GenAI technologies, I love crafting beautiful user experiences, building modern web applications with React, and transforming creative ideas into impactful digital solutions. My journey combines technology, design, creativity, and continuous learning.";
 
-const [displayedText, setDisplayedText] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
 
-useEffect(() => {
-  let i = 0;
-
-  const timer = setInterval(() => {
-    if (i < aboutText.length) {
-      setDisplayedText(aboutText.slice(0, i + 1));
-      i++;
-    } else {
-      clearInterval(timer);
-    }
-  }, 35);
-
-  return () => clearInterval(timer);
-}, []);
+  useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i < aboutText.length) {
+        setDisplayedText(aboutText.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 35);
+    return () => clearInterval(timer);
+  }, []);
 
   // CERTIFICATIONS
   const certifications = [
-    {
-      title: "HULT Event Participation (IET)",
-      year: "2023",
-      bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    },
-    {
-      title: "SQL Mastery (Udemy)",
-      year: "2024",
-      bg: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    },
-    {
-      title: "Full Stack Web Development (Udemy)",
-      year: "2025",
-      bg: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-    },
-    {
-      title: "AI Skills for Business (EY + Microsoft)",
-      year: "2026",
-      bg: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-    },
-    {
-      title: "IBM AI + Sustainability Virtual Internship (1M1B)",
-      year: "2026",
-      bg: "https://images.unsplash.com/photo-1531482615713-2afd69097998",
-    },
-    {
-      title: "GenAI Data Analytics (Tata Forage)",
-      year: "2026",
-      bg: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-    },
-    {
-      title: "Azure AI Agent Development Badge (Microsoft)",
-      year: "2026",
-      bg: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485",
-    },
-    {
-      title: "Introduction to Generative AI & Agents (Microsoft)",
-      year: "2026",
-      bg: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-    },
+    { title: "HULT Event Participation (IET)", year: "2023", bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d", url: "#" },
+    { title: "SQL Mastery (Udemy)", year: "2020", bg: "https://images.unsplash.com/photo-1518770660439-4636190af475", url: "/SQL_udemy.pdf" },
+    { title: "Full Stack Web Development (Udemy)", year: "2026", bg: "https://images.unsplash.com/photo-1498050108023-c5249f4df085", url: "/udemy_full_stack.pdf" },
+    { title: "AI Skills for Business (EY + Microsoft)", year: "2026", bg: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d", url: "/AI_Skills_EY_Microsoft.pdf" },
+    { title: "IBM AI + Sustainability Virtual Internship (1M1B)", year: "2026", bg: "https://images.unsplash.com/photo-1531482615713-2afd69097998", url: "/IBM_1M1B.pdf" },
+    { title: "GenAI Data Analytics (Tata Forage)", year: "2026", bg: "https://images.unsplash.com/photo-1551288049-bebda4e38f71", url: "/Forage_certificate.pdf" },
+    { title: "Azure AI Agent Development Badge (Microsoft)", year: "2026", bg: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485", url: "https://learn.microsoft.com/en-gb/users/sanjanapal-6259/achievements/print/zjbaxy72" },
+    { title: "Introduction to Generative AI & Agents (Microsoft)", year: "2026", bg: "https://images.unsplash.com/photo-1677442136019-21780ecad995", url: "https://learn.microsoft.com/en-gb/users/sanjanapal-6259/achievements/print/u7rclpr3" },
   ];
 
   // CODING
   const coding = [
-    {
-      title: "LeetCode + GeeksforGeeks",
-      desc: "400+ DSA Problems Solved",
-      bg: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
-      icon: "📘",
-    },
-    {
-      title: "CodeChef",
-      desc: "3★ ⭐ Competitive Programmer",
-      bg: "https://images.unsplash.com/photo-1555949963-aa79dcee981c",
-      icon: "⭐",
-    },
-    {
-      title: "Codeforces",
-      desc: "Pupil 🟢 (1285 Rating)",
-      bg: "https://images.unsplash.com/photo-1504639725590-34d0984388bd",
-      icon: "🟢",
-    },
-    {
-      title: "HackerRank Orchestrate 2026",
-      desc: "Rank 400 / 1349 (Top 30%)",
-      bg: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
-      icon: "🏆",
-    },
-    {
-      title: "TLE Eliminator",
-      desc: "Rank 492",
-      bg: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-      icon: "🔵",
-      link: "https://www.tle-eliminators.com/cp-sheet",
-    },
-    {
-      title: "AtCoder",
-      desc: "8 kyu (515)",
-      bg: "https://images.unsplash.com/photo-1504639725590-34d0984388bd",
-      icon: "🟤",
-      link: "https://atcoder.jp/users/code_sword3",
-    },
+    { title: "LeetCode + GFG", desc: "400+ DSA", url: "https://www.geeksforgeeks.org/profile/anonymous_1729?tab=activity", color: "#10b981", fromColor: "#6ee7b7", toColor: "#059669", icon: "📘" },
+    { title: "CodeChef", desc: "3★ ⭐ (1637 Rank)", url: "https://www.codechef.com/users/code_sword2", color: "#8b5cf6", fromColor: "#c4b5fd", toColor: "#7c3aed", icon: "⭐" },
+    { title: "Codeforces", desc: "Pupil 🟢", url: "https://codeforces.com/profile/anonymous_1616", color: "#ef4444", fromColor: "#fca5a5", toColor: "#dc2626", icon: "🟢" },
+    { title: "TLE Eliminator", desc: "Rank 524", url: "https://www.tle-eliminators.com/cp-sheet", color: "#ec4899", fromColor: "#fcd34d", toColor: "#d97706", icon: "🔵" },
+    { title: "AtCoder", desc: "8 kyu", url: "https://atcoder.jp/users/code_sword3", color: "#ec4899", fromColor: "#93c5fd", toColor: "#2563eb", icon: "🟤" },
+    { title: "HackerRank SQL Basic", desc: "Certificate", url: "/sql_basic_certificate.pdf", color: "#06b6d4", fromColor: "#67e8f9", toColor: "#0891b2", icon: "🏆" },
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "0px" });
+
   return (
-    <section id="about" className="section">
+    <section id="about" className="section relative z-10" ref={ref}>
       <div className="max-w-6xl mx-auto px-4">
-
         {/* HEADER */}
-        <h2 className="text-4xl font-bold text-center mb-4 who-title">
-         About my Jounery
-        </h2>
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12"
+          style={{
+            fontFamily: "'Great Vibes', cursive",
+            background: "linear-gradient(90deg, #f472b6, #c084fc, #fb7185)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            textShadow: "0 0 25px rgba(244,114,182,0.8)",
+            letterSpacing: "2px",
+            fontSize: "4rem",
+            paddingRight: "10px"
+          }}
+        >
+          About my Journey
+        </motion.h2>
 
-        <style>
-{`
-.who-title{
-  font-family:'Viner Hand ITC', sans-serif;
-  background: linear-gradient(90deg,#00f5ff,#a855f7,#ff4ecd);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  text-shadow:0 0 25px rgba(168,85,247,.35);
-  letter-spacing:2px;
-}
-`}
-</style>
+        {/* EXPERIENCE CARDS */}
+        <div className="mb-16 relative">
+          {/* 3D Circle Animation Background */}
+          <div className="absolute inset-0 flex justify-center items-center z-0 pointer-events-none overflow-visible">
+            <div className="w-[800px] h-[800px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30">
+              <CircleAnimation />
+            </div>
+          </div>
+          
+          <h3 className="text-lg font-bold mb-6 text-pink-300 tracking-wider uppercase text-center sm:text-left relative z-10">Experience</h3>
+          
+          <div className="relative">
+            {/* TIMELINE LINE */}
+            <div className="absolute left-4 sm:left-2 top-10 bottom-10 w-[2px] bg-gradient-to-b from-pink-500 via-purple-500 to-rose-400 shadow-[0_0_15px_rgba(244,114,182,0.8)]"></div>
 
+            {/* HASHBIT */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              onMouseEnter={() => setHoverExp(0)}
+              onMouseLeave={() => setHoverExp(null)}
+              className="relative glass p-6 rounded-2xl mb-8 overflow-hidden border border-pink-500/20 hover:border-pink-400 hover:-translate-y-2 hover:shadow-[0_0_35px_rgba(244,114,182,0.45)] transition-all duration-500 ml-8 sm:ml-10"
+            >
+              {/* TIMELINE DOT */}
+              <div className="absolute left-[-29px] sm:left-[-35px] top-8 w-4 h-4 rounded-full bg-pink-500 shadow-[0_0_20px_rgba(244,114,182,1)] z-20"></div>
 
+              {hoverExp === 0 && (
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-center opacity-20 scale-110 transition-all duration-700" />
+              )}
 
-{/* EXPERIENCE CARDS */}
-<div>
-  <h3 className="text-lg font-bold mb-3 text-white">Experience</h3>
+              <div className="relative z-10">
+                <p className="text-white font-bold text-xl mb-1">Full Stack Development Intern</p>
+                <p className="text-pink-400 text-sm font-semibold mb-3">HashBit Innovation (May - July 2026)</p>
+                <ul className="text-gray-300 text-sm space-y-1.5 list-disc list-inside mt-2">
+                  <li>Built responsive web apps including an Airbnb clone, a Book Recommendation system, and a Movie Ticket Booking platform using React & Node.js.</li>
+                  <li>Worked on complex API integrations, database management, and backend business logic.</li>
+                  <li>Improved UI/UX performance, reduced load times, and ensured cross-browser compatibility.</li>
+                  <li>Collaborated effectively in a fast-paced agile development environment.</li>
+                </ul>
+              </div>
+            </motion.div>
 
-  <div className="relative">
+            {/* BTECH */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              onMouseEnter={() => setHoverExp(1)}
+              onMouseLeave={() => setHoverExp(null)}
+              className="relative glass p-6 rounded-2xl overflow-hidden border border-purple-500/20 hover:border-purple-400 hover:-translate-y-2 hover:shadow-[0_0_35px_rgba(192,132,252,0.45)] transition-all duration-500 ml-8 sm:ml-10"
+            >
+              {/* TIMELINE DOT */}
+              <div className="absolute left-[-29px] sm:left-[-35px] top-8 w-4 h-4 rounded-full bg-purple-400 shadow-[0_0_20px_rgba(192,132,252,1)] z-20"></div>
 
-    {/* TIMELINE LINE */}
-    <div className="absolute left-2 top-10 bottom-10 w-[2px] bg-gradient-to-b from-violet-500 via-fuchsia-500 to-cyan-400 shadow-[0_0_15px_rgba(168,85,247,0.8)]"></div>
+              {hoverExp === 1 && (
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588072432836-e10032774350')] bg-cover bg-center opacity-20 scale-110 transition-all duration-700" />
+              )}
 
-    {/* HASHBIT */}
-    <div
-      onMouseEnter={() => setHoverExp(0)}
-      onMouseLeave={() => setHoverExp(null)}
-      className="relative glass p-4 rounded-xl mb-5 overflow-hidden border border-violet-500/20 hover:border-violet-400 hover:-translate-y-2 hover:shadow-[0_0_35px_rgba(168,85,247,0.45)] transition-all duration-500"
-    >
+              <div className="relative z-10">
+                <p className="text-white font-bold text-xl mb-1">B.Tech CSE (AI & ML)</p>
+                <p className="text-purple-400 text-sm font-semibold mb-3">IET Lucknow (2023 - 2027)</p>
+                <ul className="text-gray-300 text-sm space-y-1 list-disc list-inside">
+                  <li>Studying core CS, AI, ML & Data Structures</li>
+                  <li>Building real-world AI & web projects</li>
+                  <li>Active in competitive programming & hackathons</li>
+                  <li>Focused on full-stack + AI development skills</li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+        </div>
 
-      {/* TIMELINE DOT */}
-      <div className="absolute left-[-7px] top-7 w-4 h-4 rounded-full bg-violet-500 shadow-[0_0_20px_rgba(168,85,247,1)] z-20"></div>
-
-      {hoverExp === 0 && (
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1498050108023-c5249f4df085')] bg-cover bg-center opacity-30 scale-110 transition-all duration-700" />
-      )}
-
-      <div className="relative z-10">
-        <p className="text-white font-semibold">
-          Full Stack Development Intern
-        </p>
-
-        <p className="text-violet-400 text-xs">
-          HashBit Innovation
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Built responsive web apps using React & Node.js
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Worked on API integration & backend logic
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Improved UI/UX performance & optimization
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Collaborated in agile development environment
-        </p>
-      </div>
-    </div>
-
-    {/* BTECH */}
-    <div
-      onMouseEnter={() => setHoverExp(1)}
-      onMouseLeave={() => setHoverExp(null)}
-      className="relative glass p-4 rounded-xl overflow-hidden border border-cyan-500/20 hover:border-cyan-400 hover:-translate-y-2 hover:shadow-[0_0_35px_rgba(34,211,238,0.45)] transition-all duration-500"
-    >
-
-      {/* TIMELINE DOT */}
-      <div className="absolute left-[-7px] top-7 w-4 h-4 rounded-full bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,1)] z-20"></div>
-
-      {hoverExp === 1 && (
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588072432836-e10032774350')] bg-cover bg-center opacity-30 scale-110 transition-all duration-700" />
-      )}
-
-      <div className="relative z-10">
-        <p className="text-white font-semibold">
-          B.Tech CSE (AI & ML)
-        </p>
-
-        <p className="text-violet-400 text-xs">
-          IET Lucknow (2023 - 2027)
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Studying core CS, AI, ML & Data Structures
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Building real-world AI & web projects
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Active in competitive programming & hackathons
-        </p>
-
-        <p className="text-gray-400 text-xs">
-          Focused on full-stack + AI development skills
-        </p>
-      </div>
-    </div>
-
-  </div>
-</div>
-        {/* ABOUT ME */}
-<div className="mt-16 text-center px-6">
-
-  <h2
-    className="text-5xl mb-8 font-bold"
-    style={{
-      fontFamily: "'Dancing Script', cursive",
-      background:
-        "linear-gradient(90deg,#00f5ff,#a855f7,#ff4ecd)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      textShadow: "0 0 30px rgba(168,85,247,0.4)",
-    }}
-  >
-    About Me
-  </h2>
-
-  <p
-    style={{
-      fontFamily: "'Dancing Script', cursive",
-      fontSize: "2rem",
-      lineHeight: "1.8",
-      maxWidth: "1000px",
-      margin: "0 auto",
-      background:
-        "linear-gradient(90deg,#00f5ff,#ffffff,#a855f7)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
-      textShadow:
-        "0 0 20px rgba(0,245,255,0.4), 0 0 35px rgba(168,85,247,0.3)",
-      animation: "floatText 4s ease-in-out infinite",
-    }}
-  >
-    {displayedText}
-    <span className="animate-pulse text-cyan-300">|</span>
-  </p>
-
-</div>
+        {/* ABOUT TEXT (TYPING EFFECT) */}
+        <div className="mt-32 text-center relative z-10">
+          <h2 
+            className="text-4xl font-extrabold mb-8"
+            style={{
+              fontFamily: "'Lucida Handwriting', cursive",
+              background: "linear-gradient(90deg, #fbcfe8, #f472b6, #c084fc)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              textShadow: "0 0 10px rgba(244,114,182,0.4)",
+              fontSize: "4.5rem",
+              paddingRight: "10px",
+              letterSpacing: "2px"
+            }}>
+            About Me
+          </h2>
+          <p style={{
+            fontFamily: "'Lucida Handwriting', cursive",
+            fontSize: "2rem",
+            lineHeight: "2.0",
+            maxWidth: "1100px",
+            margin: "0 auto",
+            color: "#fdf2f8",
+            textShadow: "0 0 8px rgba(236,72,153,0.5)",
+            padding: "20px",
+            letterSpacing: "1px"
+          }}>
+            {displayedText.split(' ').map((word, index) => (
+              <span key={index} className="word-hover cursor-default mr-4">
+                {word}
+              </span>
+            ))}
+          </p>
+        </div>
 
         {/* CERTIFICATIONS + CODING */}
         <div className="grid md:grid-cols-2 gap-10 mt-24">
-
           {/* CERTIFICATIONS */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-white">
-              🏆 Certifications
-            </h3>
-
-            {certifications.map((c, i) => (
-              <div
-                key={i}
-                onMouseEnter={() => setHoverCert(i)}
-                onMouseLeave={() => setHoverCert(null)}
-                className="relative glass p-3 rounded-xl mb-3 overflow-hidden"
-              >
-                {hoverCert === i && (
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-30"
-                    style={{ backgroundImage: `url(${c.bg})` }}
-                  />
-                )}
-                <div className="relative">
-                  <p className="text-white text-sm">{c.title}</p>
-                  <p className="text-gray-400 text-xs">{c.year}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-xl font-bold mb-6 text-pink-300 tracking-wider">🏆 Certifications</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {certifications.map((c, i) => (
+                <a
+                  key={i}
+                  href={c.url}
+                  target={c.url !== '#' ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => setHoverCert(i)}
+                  onMouseLeave={() => setHoverCert(null)}
+                  className="relative glass p-4 rounded-xl overflow-hidden border border-white/5 hover:border-pink-500/50 hover:shadow-[0_0_25px_rgba(236,72,153,0.3)] hover:-translate-y-1 transition-all duration-300 cursor-pointer block"
+                >
+                  {hoverCert === i && (
+                    <div className="absolute inset-0 bg-cover bg-center opacity-30 transition-opacity duration-300" style={{ backgroundImage: `url(${c.bg})` }} />
+                  )}
+                  <div className="relative z-10">
+                    <p className="text-white font-semibold text-sm mb-1">{c.title}</p>
+                    {c.year && (
+                      <p className="text-pink-300 text-xs font-medium bg-pink-500/10 inline-block px-2 py-1 rounded-full">{c.year}</p>
+                    )}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </motion.div>
 
           {/* CODING */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-white">
-              🏅 Coding Skills
-            </h3>
-
-            {coding.map((c, i) => (
-              <div
-                key={i}
-                onMouseEnter={() => setHoverCode(i)}
-                onMouseLeave={() => setHoverCode(null)}
-                className="relative glass p-3 rounded-xl mb-3 overflow-hidden"
-              >
-                {hoverCode === i && (
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-30"
-                    style={{ backgroundImage: `url(${c.bg})` }}
-                  />
-                )}
-
-                <div className="relative">
-                  <p className="text-white text-sm font-semibold">
-                    {c.icon} {c.title}
-                  </p>
-                  <p className="text-gray-400 text-xs">{c.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h3 className="text-xl font-bold mb-6 text-purple-300 tracking-wider">🏅 Coding Skills</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {coding.map((c, i) => (
+                <a
+                  key={i}
+                  href={c.url}
+                  target={c.url !== '#' ? '_blank' : '_self'}
+                  rel="noopener noreferrer"
+                  className="wavy-btn glass-pill-btn px-[18px] py-[10px] border transition-all flex flex-col items-start gap-1 hover:-translate-y-1"
+                  style={{ 
+                    borderColor: `${c.color}50`, 
+                    boxShadow: `0 0 15px ${c.color}40, inset 0 0 10px ${c.color}20`,
+                    '--wavy-color': `linear-gradient(to top, ${c.fromColor}, ${c.toColor})`
+                  }}
+                >
+                  <span className="relative z-10 text-white text-[13px] font-bold flex items-center gap-2">
+                    <span className="text-lg">{c.icon}</span> {c.title}
+                  </span>
+                  <span className="relative z-10 text-gray-200 text-[10px] uppercase font-bold tracking-wider opacity-80">{c.desc}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
