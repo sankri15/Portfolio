@@ -107,7 +107,7 @@ export default function About() {
 
               <div className="relative z-10">
                 <p className="text-white font-bold text-xl mb-1">Full Stack Development Intern</p>
-                <p className="text-pink-400 text-sm font-semibold mb-3">HashBit Innovation (May - July 2026)</p>
+                <p className="text-pink-400 text-sm font-semibold mb-3">HashBit Innovation (May - June 2026)</p>
                 <ul className="text-gray-300 text-sm space-y-1.5 list-disc list-inside mt-2">
                   <li>Built responsive web apps including an Airbnb clone, a Book Recommendation system, and a Movie Ticket Booking platform using React & Node.js.</li>
                   <li>Worked on complex API integrations, database management, and backend business logic.</li>
