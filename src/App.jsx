@@ -5,6 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Workflow from './components/Workflow';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
@@ -57,6 +58,7 @@ export default function App() {
             <Skills />
             <Projects />
             <Workflow />
+            <Contact />
           </main>
           <Footer />
         </div>
