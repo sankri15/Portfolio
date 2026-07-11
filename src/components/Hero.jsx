@@ -143,7 +143,8 @@ const Hero = () => {
 
           {/* Optional Secondary Button */}
           <motion.a
-            href="/Sanjana_Pal_RESUME.pdf"
+            href="/RESUME_Sanjana_Pal.pdf"
+            download="RESUME_Sanjana_Pal.pdf"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
