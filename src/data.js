@@ -61,6 +61,18 @@ export const SKILL_CATEGORIES = [
       { name: 'VS Code / Linux',     level: 80 },
     ],
   },
+  {
+    title: 'Cloud & Deployment',
+    icon: '☁️',
+    color: 'amber',
+    skills: [
+      { name: 'Vercel',          level: 85 },
+      { name: 'Render',          level: 80 },
+      { name: 'Jupyter',         level: 75 },
+      { name: 'APIs',            level: 85 },
+      { name: 'Postman',         level: 80 },
+    ],
+  },
 ];
 
 // ─── Projects ────────────────────────────────────────────
@@ -118,7 +130,7 @@ export const PROJECTS = [
     longDesc: `🛒 Seamless Shopping: Beautiful UI for discovering and purchasing products.
 💳 Secure Checkout: Easy, safe payment processing for a smooth experience.
 🌟 Premium Design: Visually stunning interface tailored for a premium lifestyle.`,
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'E-commerce'],
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'APIs', 'Node.js', 'Vercel', 'Render'],
     liveUrl: 'https://glowmart-ubsx.onrender.com',
     githubUrl: 'https://github.com/sankri15/Glowmart',
     featured: true,

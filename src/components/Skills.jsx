@@ -7,6 +7,7 @@ const CATEGORY_STYLES = {
   violet:  { border: 'border-pink-500/60', shadow: 'shadow-[0_0_15px_rgba(236,72,153,0.3)]', text: 'text-pink-300', wavy: 'linear-gradient(to top, #c084fc, #ec4899)' },
   pink:    { border: 'border-cyan-500/60', shadow: 'shadow-[0_0_15px_rgba(34,211,238,0.3)]', text: 'text-cyan-300', wavy: 'linear-gradient(to top, #ec4899, #22d3ee)' },
   emerald: { border: 'border-emerald-500/60', shadow: 'shadow-[0_0_15px_rgba(16,185,129,0.3)]', text: 'text-emerald-300', wavy: 'linear-gradient(to top, #10b981, #34d399)' },
+  amber:   { border: 'border-amber-500/60', shadow: 'shadow-[0_0_15px_rgba(245,158,11,0.3)]', text: 'text-amber-300', wavy: 'linear-gradient(to top, #f59e0b, #fbbf24)' },
 };
 
 export default function Skills() {
