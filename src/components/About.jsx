@@ -41,7 +41,8 @@ export default function About() {
   // CODING
   const coding = [
     { title: "LeetCode + GFG", desc: "400+ DSA", url: "https://www.geeksforgeeks.org/profile/anonymous_1729?tab=activity", color: "#10b981", fromColor: "#6ee7b7", toColor: "#059669", icon: "📘" },
-    { title: "CodeChef", desc: "3★ ⭐ (1649 Rank)", url: "https://www.codechef.com/users/code_sword2", color: "#8b5cf6", fromColor: "#c4b5fd", toColor: "#7c3aed", icon: "⭐" },
+    { title: "CodeChef", desc: "3★ ⭐ (1649 Rank)", url: "#", color: "#8b5cf6", fromColor: "#c4b5fd", toColor: "#7c3aed", icon: "⭐" },
+    { title: "Codeforces", desc: "Pupil 🟢 (1285 Rank)", url: "#", color: "#ef4444", fromColor: "#fca5a5", toColor: "#dc2626", icon: "🟢" },
     { title: "TLE Eliminator", desc: "Rank 524", url: "https://www.tle-eliminators.com/cp-sheet", color: "#ec4899", fromColor: "#fcd34d", toColor: "#d97706", icon: "🔵" },
     { title: "AtCoder", desc: "8 kyu", url: "https://atcoder.jp/users/code_sword3", color: "#ec4899", fromColor: "#93c5fd", toColor: "#2563eb", icon: "🟤" },
     { title: "HackerRank SQL Basic", desc: "Certificate", url: "/sql_basic_certificate.pdf", color: "#06b6d4", fromColor: "#67e8f9", toColor: "#0891b2", icon: "🏆" },
@@ -229,9 +230,10 @@ export default function About() {
                 <a
                   key={i}
                   href={c.url}
-                  target={c.url !== '#' ? '_blank' : '_self'}
+                  onClick={(e) => { if (c.url === '#') e.preventDefault(); }}
+                  target={c.url !== '#' ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="wavy-btn glass-pill-btn px-[18px] py-[10px] border transition-all flex flex-col items-start gap-1 hover:-translate-y-1"
+                  className={`wavy-btn glass-pill-btn px-[18px] py-[10px] border transition-all flex flex-col items-start gap-1 ${c.url !== '#' ? 'hover:-translate-y-1' : 'cursor-default'}`}
                   style={{ 
                     borderColor: `${c.color}50`, 
                     boxShadow: `0 0 15px ${c.color}40, inset 0 0 10px ${c.color}20`,

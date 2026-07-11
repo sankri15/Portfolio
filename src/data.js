@@ -8,7 +8,8 @@ export const PERSONAL = {
   linkedin: 'https://www.linkedin.com/in/sanjpal',
   location: 'Lucknow, India',
   codingProfiles: [
-    { name: 'CodeChef', url: 'https://www.codechef.com/users/code_sword2', color: '#8b5cf6', fromColor: '#c4b5fd', toColor: '#7c3aed' },
+    { name: 'CodeChef', url: '#', color: '#8b5cf6', fromColor: '#c4b5fd', toColor: '#7c3aed' },
+    { name: 'Codeforces', url: '#', color: '#ef4444', fromColor: '#fca5a5', toColor: '#dc2626' },
 
     { name: 'GFG', url: 'https://www.geeksforgeeks.org/profile/anonymous_1729?tab=activity', color: '#10b981', fromColor: '#6ee7b7', toColor: '#059669' },
     { name: 'TLE', url: 'https://www.tle-eliminators.com/cp-sheet', color: '#ec4899', fromColor: '#fcd34d', toColor: '#d97706' },
