@@ -149,10 +149,10 @@ export const TIMELINE = [
     type: 'work',
   },
   {
-    year: '2024',
+    year: 'June 2026 - July 2026',
     title: 'Web Development Intern',
-    org: 'Hashbit Innovation',
-    desc: 'Developed and maintained front-end features for client websites using HTML, CSS, JavaScript, and React.',
+    org: 'CodeAlpha',
+    desc: 'Developed an E-commerce platform (GlowMart) and a Project Management Tool (Trello/Asana clone) using HTML, CSS, JavaScript, React, Node.js, and Express.js.',
     type: 'work',
   },
   {
