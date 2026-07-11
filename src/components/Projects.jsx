@@ -6,6 +6,7 @@ const CATEGORY_COLORS = {
   violet:  { bg: 'from-pink-500/10 to-pink-600/5', border: 'border-pink-500/20', tag: 'bg-pink-500/20 text-pink-300', btn: 'bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-400 hover:to-rose-300' },
   pink:    { bg: 'from-purple-500/10 to-purple-600/5', border: 'border-purple-500/20', tag: 'bg-purple-500/20 text-purple-300', btn: 'bg-gradient-to-r from-purple-500 to-pink-400 hover:from-purple-400 hover:to-pink-300' },
   emerald: { bg: 'from-rose-500/10 to-rose-600/5', border: 'border-rose-500/20', tag: 'bg-rose-500/20 text-rose-300', btn: 'bg-gradient-to-r from-rose-500 to-orange-400 hover:from-rose-400 hover:to-orange-300' },
+  amber:   { bg: 'from-amber-500/10 to-amber-600/5', border: 'border-amber-500/20', tag: 'bg-amber-500/20 text-amber-300', btn: 'bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300' },
 };
 
 export default function Projects() {

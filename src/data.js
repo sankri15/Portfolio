@@ -109,6 +109,21 @@ export const PROJECTS = [
     featured: true,
     color: 'violet',
     bgImage: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'glowmart',
+    title: 'GlowMart',
+    emoji: '🛍️',
+    description: 'Premium e-commerce platform offering a curated selection of fashion, beauty, and home decor.',
+    longDesc: `🛒 Seamless Shopping: Beautiful UI for discovering and purchasing products.
+💳 Secure Checkout: Easy, safe payment processing for a smooth experience.
+🌟 Premium Design: Visually stunning interface tailored for a premium lifestyle.`,
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'E-commerce'],
+    liveUrl: 'https://glowmart-ubsx.onrender.com',
+    githubUrl: 'https://github.com/sankri15/Glowmart',
+    featured: true,
+    color: 'amber',
+    bgImage: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=80',
   }
 ];
 
