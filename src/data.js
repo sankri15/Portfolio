@@ -44,9 +44,9 @@ export const SKILL_CATEGORIES = [
     skills: [
       { name: 'React',       level: 85 },
       { name: 'Node.js',     level: 75 },
-      { name: 'HTML & CSS',  level: 90 },
+      { name: 'MongoDB',     level: 80 },
+      { name: 'Flask',       level: 85 },
       { name: 'Tailwind CSS',level: 80 },
-      { name: 'REST APIs',   level: 80 },
     ],
   },
   {
@@ -55,10 +55,22 @@ export const SKILL_CATEGORIES = [
     color: 'emerald',
     skills: [
       { name: 'Git & GitHub',        level: 85 },
-      { name: 'Machine Learning',    level: 70 },
       { name: 'Data Structures',     level: 80 },
       { name: 'Algorithms',          level: 75 },
       { name: 'VS Code / Linux',     level: 80 },
+      { name: 'Docker',              level: 70 },
+    ],
+  },
+  {
+    title: 'AI & Machine Learning',
+    icon: '🤖',
+    color: 'emerald',
+    skills: [
+      { name: 'Machine Learning',    level: 80 },
+      { name: 'RAG',                 level: 75 },
+      { name: 'LLMs',                level: 85 },
+      { name: 'Artificial Intelligence', level: 80 },
+      { name: 'NLP',                 level: 75 },
     ],
   },
   {
