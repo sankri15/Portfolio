@@ -44,7 +44,7 @@ export default function About() {
     { title: "CodeChef", desc: "3★ ⭐ (1649 Rank)", url: "#", color: "#8b5cf6", fromColor: "#c4b5fd", toColor: "#7c3aed", icon: "⭐" },
     { title: "Codeforces", desc: "Pupil 🟢 (1274 Rank)", url: "https://codeforces.com/profile/anonymous_1616", color: "#ef4444", fromColor: "#fca5a5", toColor: "#dc2626", icon: "🟢" },
     { title: "TLE Eliminator", desc: "Rank 524", url: "https://www.tle-eliminators.com/cp-sheet", color: "#ec4899", fromColor: "#fcd34d", toColor: "#d97706", icon: "🔵" },
-    { title: "AtCoder", desc: "8 kyu", url: "https://atcoder.jp/users/code_sword3", color: "#ec4899", fromColor: "#93c5fd", toColor: "#2563eb", icon: "🟤" },
+    { title: "AtCoder", desc: "5 kyu", url: "https://atcoder.jp/users/code_sword3", color: "#ec4899", fromColor: "#93c5fd", toColor: "#2563eb", icon: "🟤" },
     { title: "HackerRank SQL Basic", desc: "Certificate", url: "/sql_basic_certificate.pdf", color: "#06b6d4", fromColor: "#67e8f9", toColor: "#0891b2", icon: "🏆" },
   ];
 
